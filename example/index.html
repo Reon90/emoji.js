@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    body {
+        font: 1em/1.333333333 Helvetica, Arial, sans-serif;
+    }
+    img {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+    }
+
+    #textarea {
+        position: relative;
+        margin: 20px 0;
+        height: 200px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    #textarea:empty:before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-right: -4px;
+        content: attr(data-placeholder);
+        cursor: text;
+        color: #bfbfbf;
+        font: 1em/1.333333333 Helvetica, Arial, sans-serif;
+    }
+    #message {
+        height: 200px; 
+        border: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+    </style>
+</head>
+<body>
+    <div id="message"></div>
+    <div id="textarea" contenteditable="true" data-placeholder="Type emoji"></div>
+	<button id="button">Send</button>
+	<script src="../lib/emoji.js"></script>
+	<script>
+    let instance = new emoji('../public/1/', '../public/2/');
+    textarea.addEventListener('keyup', onKeyup);
+    textarea.addEventListener('paste', onPaste);
+    button.addEventListener('click', onSend);
+
+    function onKeyup() {
+        let html = instance.cleanUp(textarea.innerHTML);
+        let proccesedHTML = instance.emojiToHtml(html);
+
+        if (html !== proccesedHTML) {
+            textarea.innerHTML = proccesedHTML;
+            instance.restoreCaret(textarea);
+        }
+    }
+
+    function onPaste(e) {
+        e.preventDefault();
+        var clp = e.clipboardData;
+
+        if (clp !== undefined || window.clipboardData !== undefined) {
+            var text;
+
+            if (clp !== undefined) {
+                text = clp.getData('text/html') || clp.getData('text/plain') || '';
+            } else {
+                text = window.clipboardData.getData('text') || '';
+            }
+
+            if (text) {
+                text = instance.cleanUp(text);
+                text = instance.emojiToHtml(text);
+                var el = document.createElement('span');
+                el.innerHTML = text;
+                el.innerHTML = el.innerHTML.replace(/\n/g, '');
+                textarea.appendChild(el);
+                instance.restoreCaret(textarea);
+            }
+        }
+    }
+
+    function onSend() {
+        message.innerHTML = instance.htmlToEmoji(textarea.innerHTML);
+    }
+    </script>
+</body>
+</html>
