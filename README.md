@@ -13,7 +13,7 @@ Support latest emoji set from iOS 10.2 and Android 7.1.1 [2418 emoji]
 IE8 with polyfill
 
 ## Usage
-[Demo] (https://reon90.github.io/emoji.js/example/index.html)
+[Demo](https://reon90.github.io/emoji.js/example/index.html)
 
 ```js
 let instance = new emoji('../public/1/', '../public/2/');
