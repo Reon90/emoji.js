@@ -8,6 +8,11 @@ Support latest emoji set from iOS 10.2 and Android 7.1.1 [2418 emoji]
 
 [RU] https://habrahabr.ru/company/badoo/blog/282113/
 
+## Install
+```
+npm install emoji.js
+```
+
 ## Browser support
 
 IE8 with polyfill
