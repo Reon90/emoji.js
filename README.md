@@ -5,6 +5,7 @@ Get emoji from string, convert emoji to image. [4kb]
 Support latest emoji set from iOS 10.2 and Android 7.1.1 [2418 emoji]
 
 [EN] https://techblog.badoo.com/blog/2016/11/17/emoji-no-never-heard-of-it/
+
 [RU] https://habrahabr.ru/company/badoo/blog/282113/
 
 ## Browser support
@@ -12,6 +13,7 @@ Support latest emoji set from iOS 10.2 and Android 7.1.1 [2418 emoji]
 IE8 with polyfill
 
 ## Usage
+[Demo] (https://reon90.github.io/emoji.js/example/index.html)
 
 ```js
 let instance = new emoji('../public/1/', '../public/2/');
